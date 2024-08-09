@@ -1,0 +1,139 @@
+{
+    "os": "Linux-6.5.0-44-generic-x86_64-with-glibc2.35",
+    "python": "3.12.4",
+    "heartbeatAt": "2024-08-09T03:14:43.542256",
+    "startedAt": "2024-08-09T03:14:42.819639",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "<python with no main file>",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/jaemin-shin/FedBalancer.git",
+        "commit": "1d187c88de9b5b43e28c988b2423e9f616c80610"
+    },
+    "email": null,
+    "root": "/home/ks/Desktop/Code/FedBalancer",
+    "host": "ks-MS-7D91",
+    "username": "ks",
+    "executable": "/home/ks/anaconda3/bin/python3",
+    "cpu_count": 12,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 3.4234999999999998,
+        "min": 800.0,
+        "max": 4580.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3.502,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.485,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.358,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.542,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.625,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 4.231,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.831,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.997,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.445,
+            "min": 800.0,
+            "max": 4900.0
+        },
+        {
+            "current": 3.468,
+            "min": 800.0,
+            "max": 4900.0
+        },
+        {
+            "current": 3.618,
+            "min": 800.0,
+            "max": 4900.0
+        },
+        {
+            "current": 3.502,
+            "min": 800.0,
+            "max": 4900.0
+        },
+        {
+            "current": 3.499,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.967,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.502,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 3.459,
+            "min": 800.0,
+            "max": 4800.0
+        },
+        {
+            "current": 2.58,
+            "min": 800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 2.592,
+            "min": 800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 2.427,
+            "min": 800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 2.414,
+            "min": 800.0,
+            "max": 3600.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 1832.2072448730469,
+            "used": 123.63873672485352
+        }
+    },
+    "memory": {
+        "total": 31.109596252441406
+    }
+}

@@ -1,0 +1,6 @@
+2024-08-09 11:58:45,486 - FL-type - INFO - logger init finished ---- log file: configs/femnist/femnist_fedavg_1T_seed0.cfg.log
+2024-08-09 11:58:45,509 - numexpr.utils - INFO - Note: NumExpr detected 20 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-08-09 11:58:45,509 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2024-08-09 11:58:45,580 - FL-type - WARNING - no cached timer is found, build from scratch
+2024-08-09 11:58:45,658 - FL-type - INFO - read config from configs/femnist/femnist_fedavg_1T_seed0.cfg
+2024-08-09 11:58:45,658 - FL-type - ERROR - ERROR: config file configs/femnist/femnist_fedavg_1T_seed0.cfg does not exist!
