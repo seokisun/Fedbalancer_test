@@ -12,6 +12,7 @@ import traceback
 from collections import defaultdict
 
 import torch
+import wandb
 
 # args
 from utils.args import parse_args
