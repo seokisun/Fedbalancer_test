@@ -146,7 +146,7 @@ def main():
     
     def exit_handler(signum, frame):
         os._exit(0)
-    
+    start_time=time.time()
     for i in range(num_rounds):
         logger.info('===================== Round {} of {} ====================='.format(i+1, num_rounds))
         # 1. selection stage
@@ -155,7 +155,8 @@ def main():
         cur_time = server.get_cur_time()
         time_window = server.get_time_window() 
         logger.info('current time: {}\ttime window: {}\t'.format(cur_time, time_window))
-        
+        wandb.log({"current_time": cur_time, "time_window": time_window},step=i, commit=False)
+
         # If the current time passed the global final time, then finish training
         if cfg.global_final_time != 0 and cur_time > cfg.global_final_time: 
             break
@@ -185,6 +186,7 @@ def main():
         attended_clients.update(c_ids)
         c_ids.sort()
         logger.info("selected num: {}".format(len(c_ids)))
+        wandb.log({"selected_num": len(c_ids)},step=i, commit=False)
         logger.debug("selected client_ids: {}".format(c_ids))
         
         # 1.3 update simulation time
@@ -197,7 +199,8 @@ def main():
         
         # 2.2 update simulation time
         server.pass_time(simulation_time)
-        
+        wandb.log({"actual_elapsed_time": time.time() - start_time}, step=i, commit=False)
+        wandb.log({},commit=True)
         # 3. update stage
         logger.info('--------------------- report stage ---------------------')
         # 3.1 update global model
@@ -368,6 +371,7 @@ def output_current_round_deadline(selected_clients):
 
 if __name__ == '__main__':
     # nohup python main.py -dataset shakespeare -model stacked_lstm &
+    wandb.init(project="fed-balancer-variations", name="femnist_fedbalancer")
     start_time=time.time()
     main()
     # logger.info("used time = {}s".format(time.time() - start_time))

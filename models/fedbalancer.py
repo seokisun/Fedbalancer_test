@@ -8,6 +8,7 @@ import math
 import sys
 import copy
 import torch
+import wandb
 
 L = Logger()
 logger = L.get_logger()
@@ -260,14 +261,17 @@ class FedBalancer:
         return oort_whole_data, xss, yss, num_data, data_idx, sorted_loss
     
     # Algorithm 2 from the FedBalancer paper
-    def loss_threshold_selection(self):
+    def loss_threshold_selection(self, current_round):
         if self.loss_threshold == 0 and self.loss_threshold_ratio == 0:
             self.loss_threshold = 0
+            wandb.log({"loss_threshold": self.loss_threshold}, step=current_round, commit=False)
             logger.info('loss_threshold {}'.format(self.loss_threshold))
         else:
             loss_low = np.min(self.current_round_loss_min)
             loss_high = np.mean(self.current_round_loss_max)
             self.loss_threshold = loss_low + (loss_high - loss_low) * self.loss_threshold_ratio
+            
+            wandb.log({"loss_low": loss_low, "loss_high": loss_high, "loss_threshold": self.loss_threshold}, step=current_round, commit=False)
             logger.info('loss_low {}, loss_high {}, loss_threshold {}'.format(loss_low, loss_high, self.loss_threshold))
     
     # Algorithm 3 from the FedBalancer paper

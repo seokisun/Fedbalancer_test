@@ -9,6 +9,7 @@ import random
 import math
 import sys
 import copy
+import wandb
 
 from oort import Oort
 from fedbalancer import FedBalancer
@@ -134,14 +135,18 @@ class Server:
 
         # Fedbalancer loss threshold and deadline update based on the loss threshold percentage (ratio) and the deadline percentage (ratio)
         if (self.cfg.fedbalancer or self.cfg.oortbalancer) and self.fedbalancer.if_any_client_sent_response_for_current_round:
-            self.fedbalancer.loss_threshold_selection()
+            self.fedbalancer.loss_threshold_selection(self.current_round)
 
             if self.cfg.fb_simple_control_ddl_stepsize != 0.0:
                 self.deadline = self.fedbalancer.deadline_selection(self.selected_clients, self.clients_info, self.cfg.num_epochs, self.deadline, self.cfg.batch_size, self.current_round)
-        
+
+            wandb.log({"round_deadline": self.deadline, "loss_threshold": self.fedbalancer.loss_threshold}, step=self.current_round,commit=False)
+            wandb.log({"round_deadline_ratio": self.fedbalancer.deadline_ratio, "loss_threshold_ratio": self.fedbalancer.loss_threshold_ratio}, step=self.current_round,commit=False) 
+
             logger.info('this round deadline {}, loss_threshold {}'.format(self.deadline, self.fedbalancer.loss_threshold))
             logger.info('this round deadline ratio {}, loss_threshold ratio {}'.format(self.fedbalancer.deadline_ratio, self.fedbalancer.loss_threshold_ratio))
         else:
+            wandb.log({"round_deadline": self.deadline}, step=self.current_round,commit=False)
             logger.info('this round deadline {}'.format(self.deadline))
 
         # These are the two cases which the round does not end with deadline; it ends when predefined number of clients succeed in a round
@@ -398,6 +403,8 @@ class Server:
             # sys_metrics['configuration_time'] = simulate_time
             avg_acc = sum(accs)/len(accs)
             avg_loss = sum(losses)/len(losses)
+            wandb.log({"average_acc": avg_acc, "average_loss": avg_loss}, step=self.current_round, commit=False)
+
             logger.info('average acc: {}, average loss: {}'.format(avg_acc, avg_loss))
             logger.info('configuration and update stage simulation time: {}'.format(simulate_time))
 
@@ -412,6 +419,7 @@ class Server:
             if self.cfg.fedbalancer or self.cfg.oortbalancer:
                 current_round_loss = (sorted_loss_sum / num_of_samples) / (self.deadline)
                 self.fedbalancer.prev_train_losses.append(current_round_loss)
+                wandb.log({"current_round_loss": current_round_loss}, step=self.current_round, commit=False)
                 logger.info('current_round_loss: {}'.format(current_round_loss))
                     # else:
                     #     self.loss_threshold = min_loss
