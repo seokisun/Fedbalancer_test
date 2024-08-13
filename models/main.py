@@ -371,7 +371,7 @@ def output_current_round_deadline(selected_clients):
 
 if __name__ == '__main__':
     # nohup python main.py -dataset shakespeare -model stacked_lstm &
-    wandb.init(project="fed-balancer-variations", name="femnist_fedbalancer")
+    wandb.init(project="fed-balancer-variations", name="femnist_fedbalancer_clientselection_off")
     start_time=time.time()
     main()
     # logger.info("used time = {}s".format(time.time() - start_time))

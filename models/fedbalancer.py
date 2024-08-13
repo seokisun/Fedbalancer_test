@@ -71,6 +71,7 @@ class FedBalancer:
         tmp_data = zip(tmp_data, range(len(train_data["x"])))
         tmp_data = zip(whole_data_loss_list, tmp_data)
 
+
         # sort samples with its loss in ascending order
         tmp_data = sorted(tmp_data, reverse=False, key=lambda elem: elem[0])
 
@@ -270,7 +271,7 @@ class FedBalancer:
             loss_low = np.min(self.current_round_loss_min)
             loss_high = np.mean(self.current_round_loss_max)
             self.loss_threshold = loss_low + (loss_high - loss_low) * self.loss_threshold_ratio
-            
+
             wandb.log({"loss_low": loss_low, "loss_high": loss_high, "loss_threshold": self.loss_threshold}, step=current_round, commit=False)
             logger.info('loss_low {}, loss_high {}, loss_threshold {}'.format(loss_low, loss_high, self.loss_threshold))
     

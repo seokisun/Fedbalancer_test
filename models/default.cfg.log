@@ -1,0 +1,5 @@
+2024-08-12 17:51:01,026 - FL-type - INFO - logger init finished ---- log file: default.cfg.log
+2024-08-12 17:51:01,050 - numexpr.utils - INFO - Note: NumExpr detected 20 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-08-12 17:51:01,050 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2024-08-12 17:51:04,005 - FL-type - INFO - read config from default.cfg
+2024-08-12 17:51:04,005 - FL-type - ERROR - ERROR: config file default.cfg does not exist!
